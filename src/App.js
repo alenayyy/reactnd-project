@@ -40,15 +40,18 @@ class BooksApp extends React.Component {
             <div className="list-books-content">
               <div>
                 <Bookshelf  title="Currently Reading"
-                            key="Currently Reading"
+                            key="currentlyReading"
+                            id="currentlyReading"
                             books={currentlyReading} />
 
                 <Bookshelf  title="Want to Read"
-                            key="Want to Read"
+                            key="wantToRead"
+                            id="wantToRead"
                             books={wantToRead} />
 
                 <Bookshelf  title="Read"
-                            key="Read"
+                            key="read"
+                            id="read"
                             books={read} />
               </div>
             </div>

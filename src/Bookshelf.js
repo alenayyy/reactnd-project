@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import Book from './Book'
+import BookshelfChanger from './BookshelfChanger'
 
 class Bookshelf extends Component {
 
@@ -14,8 +15,9 @@ class Bookshelf extends Component {
           imageHeight="192"
           key={book.id}
           bookTitle={book.title}
-          bookAuthors={book.authors}
-        />
+          bookAuthors={book.authors}>
+            <BookshelfChanger id={this.props.id}/>
+        </Book>
       )
     });
 
