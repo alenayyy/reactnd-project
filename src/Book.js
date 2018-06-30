@@ -10,14 +10,16 @@ class Book extends Component {
     let imageHeight = parseInt(this.props.imageHeight, 10);
 
     return (
-      <div className="book">
-        <div className="book-top">
-          <div className="book-cover" style={{ width: imageWidth, height: imageHeight, backgroundImage: bookCoverBackroundImage }}></div>
-          <BookShelfChanger/>
+      <li>
+        <div className="book">
+          <div className="book-top">
+            <div className="book-cover" style={{ width: imageWidth, height: imageHeight, backgroundImage: bookCoverBackroundImage }}></div>
+            <BookShelfChanger/>
+          </div>
+          <div className="book-title">{this.props.bookTitle}</div>
+          <div className="book-authors">{this.props.bookAuthors}</div>
         </div>
-        <div className="book-title">{this.props.bookTitle}</div>
-        <div className="book-authors">{this.props.bookAuthors}</div>
-      </div>
+      </li>
     );
   }
 }
