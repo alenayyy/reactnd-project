@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import BookShelfChanger from './BookShelfChanger'
+import BookshelfChanger from './BookshelfChanger'
 
 class Book extends Component {
   render() {
@@ -14,7 +14,7 @@ class Book extends Component {
         <div className="book">
           <div className="book-top">
             <div className="book-cover" style={{ width: imageWidth, height: imageHeight, backgroundImage: bookCoverBackroundImage }}></div>
-            <BookShelfChanger/>
+            <BookshelfChanger/>
           </div>
           <div className="book-title">{this.props.bookTitle}</div>
           <div className="book-authors">{this.props.bookAuthors}</div>
