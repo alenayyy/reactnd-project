@@ -16,7 +16,9 @@ class Bookshelf extends Component {
           key={book.id}
           bookTitle={book.title}
           bookAuthors={book.authors}>
-            <BookshelfChanger id={this.props.id}/>
+            <BookshelfChanger id={this.props.id}
+                              bookId={book.id}
+                              moveBook={this.props.moveBook} />
         </Book>
       )
     });
