@@ -4,9 +4,12 @@ import './App.css'
 
 import Bookshelf from './Bookshelf'
 import SearchView from './SearchView'
+import Books from './Books'
 
 import { Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+
+
 
 class BooksApp extends React.Component {
   state = {
@@ -15,8 +18,9 @@ class BooksApp extends React.Component {
      * we're on, use the URL in the browser's address bar. This will ensure that
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
-     */    
-    books: []
+     */
+    books: [],
+    searchResults: []
   }
 
   updateBooks = () => {
@@ -36,6 +40,12 @@ class BooksApp extends React.Component {
         })
       }
     });
+  }
+
+  searchBooks = (e) => {
+    BooksAPI.search(e.target.value).then((books) => {
+      this.setState({searchResults: books})
+    })
   }
 
   componentDidMount() {
@@ -59,26 +69,25 @@ class BooksApp extends React.Component {
               <div>
                 <Bookshelf  title="Currently Reading"
                             key="currentlyReading"
-                            id="currentlyReading"
+                            bookshelfId="currentlyReading"
                             books={currentlyReading}
                             moveBook={this.moveBook} />
 
                 <Bookshelf  title="Want to Read"
                             key="wantToRead"
-                            id="wantToRead"
+                            bookshelfId="wantToRead"
                             books={wantToRead}
                             moveBook={this.moveBook} />
 
                 <Bookshelf  title="Read"
                             key="read"
-                            id="read"
+                            bookshelfId="read"
                             books={read}
                             moveBook={this.moveBook} />
               </div>
             </div>
             <div className="open-search">
-              <Link to='/search' className='add-contact'>Add a book</Link>
-              {/* <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a> */}
+              <Link to='/search' className='add-contact'>Add a book</Link>              
             </div>
           </div>
         )}/>
@@ -86,7 +95,8 @@ class BooksApp extends React.Component {
         <Route path='/search' render={() => (
           <div className="search-books">
             <div className="search-books-bar">
-              <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
+              <Link to='/' className='close-search'>Close</Link>
+              {/* <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a> */}
               <div className="search-books-input-wrapper">
                 {/*
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -96,12 +106,13 @@ class BooksApp extends React.Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-                <input type="text" placeholder="Search by title or author"/>
+                <input type="text" placeholder="Search by title or author" onChange={this.searchBooks}/>
 
               </div>
             </div>
             <div className="search-books-results">
-              <ol className="books-grid"></ol>
+              <Books  books={this.state.searchResults}
+                      moveBook={this.moveBook}/>
             </div>
           </div>
         )}/>

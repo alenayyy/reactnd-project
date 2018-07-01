@@ -1,35 +1,18 @@
 import React, {Component} from 'react';
 
-import Book from './Book'
-import BookshelfChanger from './BookshelfChanger'
+import Books from './Books'
 
 class Bookshelf extends Component {
 
   render() {
 
-    let bookComponents = [];
-    this.props.books.forEach( book => {
-      bookComponents.push(
-        <Book backgroundImage={book.imageLinks.thumbnail}
-          imageWidth="128"
-          imageHeight="192"
-          key={book.id}
-          bookTitle={book.title}
-          bookAuthors={book.authors}>
-            <BookshelfChanger id={this.props.id}
-                              bookId={book.id}
-                              moveBook={this.props.moveBook} />
-        </Book>
-      )
-    });
+    var { title, ...other } = this.props;
 
     return (
       <div className="bookshelf">
-        <h2 className="bookshelf-title">{this.props.title}</h2>
+        <h2 className="bookshelf-title">{title}</h2>
         <div className="bookshelf-books">
-          <ol className="books-grid">
-            {bookComponents}
-          </ol>
+          <Books {...other} />
         </div>
       </div>
     );
