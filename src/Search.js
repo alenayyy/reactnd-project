@@ -12,9 +12,13 @@ class Search extends Component {
   }
 
   searchBooks = (e) => {
-    BooksAPI.search(e.target.value).then((books) => {
-      this.setState({searchResults: books})
-    })
+    if(e.target.value) {
+      BooksAPI.search(e.target.value).then((results) => {
+        if(Array.isArray(results)) {
+          this.setState({searchResults: results});
+        }
+      });
+    }
   }
 
   render() {

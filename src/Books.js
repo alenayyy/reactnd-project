@@ -8,9 +8,13 @@ class Books extends Component {
   render() {
 
     let books = [];
+
     this.props.books.forEach( book => {
+
+      let thumbnail = book.imageLinks ? book.imageLinks.thumbnail : 'https://books.google.ro/googlebooks/images/no_cover_thumb.gif';
+      
       books.push(
-        <Book backgroundImage={book.imageLinks.thumbnail}
+        <Book backgroundImage={thumbnail}
           imageWidth="128"
           imageHeight="192"
           key={book.id}
