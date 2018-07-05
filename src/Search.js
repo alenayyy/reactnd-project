@@ -22,6 +22,12 @@ class Search extends Component {
   }
 
   render() {
+
+    let books = this.state.searchResults.map(book => {
+      book.shelf = this.props.libraryBooks.get(book.id) || 'none';      
+      return book;
+    });
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -31,7 +37,7 @@ class Search extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          <Books  books={this.state.searchResults}
+          <Books  books={books}
                   moveBook={this.props.moveBook}/>
         </div>
       </div>

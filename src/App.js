@@ -25,9 +25,13 @@ class BooksApp extends React.Component {
       const i = books.findIndex(book => book.id === bookId);
       if(i >= 0) {
         books[i].shelf = bookshelfId;
+        if(bookshelfId === 'none') {
+          books.splice(i, 1);
+        }
       }
       else {
         BooksAPI.get(bookId).then((book) => {
+            book.shelf = bookshelfId;
             books.push(book);
         })
       }
@@ -52,7 +56,8 @@ class BooksApp extends React.Component {
         )}/>
 
         <Route path='/search' render={() => (
-          <Search moveBook={this.moveBook} />
+          <Search moveBook={this.moveBook}
+                  libraryBooks={ new Map(this.state.books.map(book => [book.id, book.shelf])) }/>
         )}/>
 
       </div>

@@ -12,7 +12,8 @@ class Books extends Component {
     this.props.books.forEach( book => {
 
       let thumbnail = book.imageLinks ? book.imageLinks.thumbnail : 'https://books.google.ro/googlebooks/images/no_cover_thumb.gif';
-      
+      let bookshelfId = book.shelf || (this.props.bookshelfId || 'none');
+
       books.push(
         <Book backgroundImage={thumbnail}
           imageWidth="128"
@@ -20,7 +21,7 @@ class Books extends Component {
           key={book.id}
           bookTitle={book.title}
           bookAuthors={book.authors}>
-            <BookshelfChanger id={this.props.bookshelfId || 'none'}
+            <BookshelfChanger id={bookshelfId}
                               bookId={book.id}
                               moveBook={this.props.moveBook} />
         </Book>
