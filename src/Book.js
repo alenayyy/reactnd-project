@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 
+/*
+  This component represents a Book;
+  The Book is also paired with a BookshelfChanger component which is rendered as a child
+*/
 class Book extends Component {
   render() {
 

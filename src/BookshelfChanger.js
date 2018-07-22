@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 
-class BookshelfChanger extends Component {  
+/*
+  This component represents a BookshelfChanger;
+  Is responsible for handling the move of a book from one Bookshelf to another (or removal from the Library - none)
+  The move is handled by a function passed in from the App.js
+*/
+class BookshelfChanger extends Component {
 
   handleChange = (e) => {
     e.preventDefault();
